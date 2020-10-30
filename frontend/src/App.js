@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <Header></Header>
-      <main>
+      <main className="py-4" >
         <Container>
           <h1>Test</h1>
         </Container>
