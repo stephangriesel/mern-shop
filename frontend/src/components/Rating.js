@@ -31,9 +31,9 @@ Rating.defaultProps = {
 }
 
 Rating.propTypes = {
-    valye: PropTypes.number.isRequired,
-    valye: PropTypes.string.isRequired,
-    valye: PropTypes.string,
+    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
 }
 
 export default Rating
