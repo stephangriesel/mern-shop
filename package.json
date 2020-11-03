@@ -1,0 +1,14 @@
+{
+  "name": "mern-shop",
+  "version": "1.0.0",
+  "description": "MERN Shop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "author": "Stephan Griesel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
