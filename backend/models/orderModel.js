@@ -30,6 +30,8 @@ const orderSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        // Payment Gateways note:
+        // Paypal: paymentResult
         paymentResult: {
             id: { type: String },
             status: { type: String },
