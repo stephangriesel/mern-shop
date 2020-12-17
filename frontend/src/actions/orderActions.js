@@ -131,7 +131,10 @@ export const listMyOrders = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: ORDER_LIST_MY_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
         })
     }
 }
