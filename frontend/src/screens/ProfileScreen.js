@@ -16,13 +16,13 @@ const ProfileScreen = ({ location, history }) => {
 
     const dispatch = useDispatch()
 
-    const userDetails = useSelector(state => state.userDetails)
+    const userDetails = useSelector((state) => state.userDetails)
     const { loading, error, user } = userDetails
 
-    const userLogin = useSelector(state => state.userLogin)
+    const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
     const { success } = userUpdateProfile
 
     const orderListMy = useSelector((state) => state.orderListMy)
@@ -32,7 +32,7 @@ const ProfileScreen = ({ location, history }) => {
         if (!userInfo) {
             history.push('/login')
         } else {
-            if (!user) {
+            if (!user.name) {
                 dispatch(getUserDetails('profile'))
                 dispatch(listMyOrders())
             } else {
@@ -138,7 +138,7 @@ const ProfileScreen = ({ location, history }) => {
                                 )}</td>
                                 <td>
                                     <LinkContainer to={`/order/${order._id}`}>
-                                        <Button variant="light">Details</Button>
+                                        <Button className="btn-sm" variant="light">Details</Button>
                                     </LinkContainer>
                                 </td>
                             </tr>
