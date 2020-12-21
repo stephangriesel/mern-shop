@@ -28,7 +28,8 @@ const UserListScreen = ({ history }) => {
     }, [dispatch, history, successDelete])
 
     const deleteHandler = (id) => {
-        dispatch(deleteUser(id))
+        if (window.confirm(`Please confirm if you want to delete ${id}`))
+            dispatch(deleteUser(id))
     }
     return (
         <>
