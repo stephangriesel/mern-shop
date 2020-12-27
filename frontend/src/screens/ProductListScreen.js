@@ -10,16 +10,17 @@ import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch()
 
-    const productList = useSelector(state => state.productList)
+    const productList = useSelector((state) => state.productList)
     const { loading, error, products } = productList
 
-    const productDelete = useSelector(state => state.productDelete)
+    const productDelete = useSelector((state) => state.productDelete)
     const {
         loading: loadingDelete,
         error: errorDelete,
-        success: successDelete } = productDelete
+        success: successDelete
+    } = productDelete
 
-    const productCreate = useSelector(state => state.productDelete)
+    const productCreate = useSelector((state) => state.productCreate)
     const {
         loading: loadingCreate,
         error: errorCreate,
@@ -27,7 +28,7 @@ const ProductListScreen = ({ history, match }) => {
         product: createdProduct
     } = productCreate
 
-    const userLogin = useSelector(state => state.userLogin)
+    const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
     useEffect(() => {
