@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
     const orderId = match.params.id
 
     const [sdkReady, setSdkReady] = useState(false)
@@ -37,6 +37,9 @@ const OrderScreen = ({ match }) => {
     }
 
     useEffect(() => {
+        if (!userInfo) {
+            history.push('/login')
+        }
         const addPayPalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
             console.log('Client ID test: ', clientId);
