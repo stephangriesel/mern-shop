@@ -11,7 +11,12 @@ const reviewSchema = mongoose.Schema({
     },
     comments: {
         type: String,
-        required: true
+        required: false
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
 }, {
     timestamps: true
