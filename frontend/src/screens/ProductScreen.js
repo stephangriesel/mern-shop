@@ -112,7 +112,7 @@ const ProductScreen = ({ history, match }) => {
                             </Card>
                         </Col>
                     </Row>
-                    <Row>
+                    {/* <Row>
                         <Col md={6}>
                             <h2>Reviews</h2>
                             {product.reviews.length === 0 && <Message>No Reviews</Message>}
@@ -161,7 +161,7 @@ const ProductScreen = ({ history, match }) => {
                                 </ListGroup.Item>
                             </ListGroup>
                         </Col>
-                    </Row>
+                    </Row> */}
                 </>
             )}
 
