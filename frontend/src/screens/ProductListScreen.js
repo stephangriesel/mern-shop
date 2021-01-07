@@ -51,7 +51,8 @@ const ProductListScreen = ({ history, match }) => {
         userInfo,
         successDelete,
         successCreate,
-        createdProduct
+        createdProduct,
+        pageNumber
     ])
 
     const deleteHandler = (id) => {
