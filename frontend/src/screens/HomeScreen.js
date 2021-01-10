@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 
 const HomeScreen = ({ match }) => {
@@ -28,6 +29,7 @@ const HomeScreen = ({ match }) => {
                 <Message variant='danger'>{error}</Message>
             ) : (
                         <>
+                            <Meta />
                             <Row>
                                 {products.map(product => (
                                     <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
