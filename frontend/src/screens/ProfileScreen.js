@@ -33,7 +33,7 @@ const ProfileScreen = ({ location, history }) => {
         if (!userInfo) {
             history.push('/login')
         } else {
-            if (!user.name || user.name || success) { // remove user.name when testing in postman
+            if (!user || !user.name || success) { // remove user.name when testing in postman
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
                 dispatch(listMyOrders())
