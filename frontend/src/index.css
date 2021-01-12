@@ -68,6 +68,15 @@ a {
   background-color: rgb(228, 227, 227);
 }
 
+.dropdown-item.active {
+  background-color: #fff;
+}
+
+.form-control {
+  /* width: 50px; */
+  padding: 2px;
+}
+
 .btn-primary {
   background: #000 !important;
   border: 1px solid #979797 !important;
