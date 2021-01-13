@@ -7,6 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+import Hero from '../components/Hero'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 
@@ -22,7 +23,7 @@ const HomeScreen = ({ match }) => {
 
     return (
         <>
-            {!keyword ? <ProductCarousel /> : <Link to='/' className='btn btn-light'>Back</Link>}
+            {!keyword ? <Hero /> : <Link to='/' className='btn btn-light'>Back</Link>}
             <h1>Latest Products</h1>
             {loading ? (
                 <Loader />
