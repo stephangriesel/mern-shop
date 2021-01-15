@@ -6,26 +6,29 @@ dotenv.config();
 
 const query = `
 query {
-    homepage(id: "4ym1ZsDDrnuyHQyHCbq9G6") {
-      hero {
-        fileName
-      }
-    }
+  person(id: "7rO4f5TlocqD2yl5QH8QzO") {
+    name
   }
+}
 `
+
+const { CONTENTFUL_TOKEN, CONTENTFUL_SPACE } = process.env;
+console.log(CONTENTFUL_SPACE)
+console.log(CONTENTFUL_TOKEN)
 
 const Hero = () => {
   let [data, setData] = useState(null)
 
   useEffect(() => {
-    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE}?access_token=${process.env.CONTENTFUL_TOKEN}`, {
+    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE}`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${CONTENTFUL_TOKEN}`
       },
       body: JSON.stringify({ query }),
     }).then((response) => response.json())
-      .then(json => console.log(json.data))
+      .then(json => setData(json.data))
   }, [])
 
   if (!data) return <span>Loading..</span>
@@ -37,7 +40,7 @@ const Hero = () => {
       <Container>
         <Row>
           <Col className='text-center py-3'>
-            {/* Get Data */}
+            {data.person.name}
           </Col>
         </Row>
       </Container>
