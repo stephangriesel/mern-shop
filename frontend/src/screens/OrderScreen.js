@@ -67,7 +67,7 @@ const OrderScreen = ({ match, history }) => {
 
         // addPayPalScript()
 
-    }, [dispatch, orderId, order, successDeliver, successPay])
+    }, [dispatch, orderId, order, successDeliver, successPay, history, userInfo])
 
     // paymentResult from PayPal
     const successPaymentHandler = (paymentResult) => {

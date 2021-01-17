@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
-import Rating from '../components/Rating';
+// import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Meta from '../components/Meta';
@@ -63,7 +63,7 @@ const ProductScreen = ({ history, match }) => {
                                     <h4>{product.name}</h4>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
-                                    <Rating value={product.rating} text={`${product.numReviews} Reviews`}></Rating>
+                                    {/* <Rating value={product.rating} text={`${product.numReviews} Reviews`}></Rating> */}
                                 </ListGroup.Item>
                                 <ListGroup.Item>
                                     Price: €{product.price}
