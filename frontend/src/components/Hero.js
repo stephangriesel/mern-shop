@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import axios from 'axios'
 
 import dotenv from 'dotenv'
 dotenv.config();
@@ -12,26 +13,30 @@ query {
 }
 `
 
-const { CONTENTFUL_TOKEN, CONTENTFUL_SPACE } = process.env;
-console.log(CONTENTFUL_SPACE)
-console.log(CONTENTFUL_TOKEN)
-
 const Hero = () => {
   let [data, setData] = useState(null)
 
   useEffect(() => {
-    window.fetch(`https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE}`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${CONTENTFUL_TOKEN}`
-      },
-      body: JSON.stringify({ query }),
-    }).then((response) => response.json())
-      .then(json => setData(json.data))
+    const loadContentful = async () => {
+      const { data: contentfulToken } = await axios.get('/api/config/contentfultoken')
+      const { data: contentfulSpace } = await axios.get('/api/config/contentfulspace')
+      console.log('Contentful token test: ', contentfulToken);
+      console.log('Contentful space test: ', contentfulSpace);
+      window.fetch(`https://graphql.contentful.com/content/v1/spaces/${contentfulSpace}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${contentfulToken}`
+        },
+        body: JSON.stringify({ query }),
+      }).then((response) => response.json())
+        .then(json => setData(json.data))
+    }
+    loadContentful()
   }, [])
 
   if (!data) return <span>Loading..</span>
+
 
 
   return (
