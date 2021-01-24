@@ -14,7 +14,9 @@ query {
 
 const Hero = () => {
 
-  let { data } = useContentful(query)
+  let { data, errors } = useContentful(query)
+
+  if (errors) return <span style={{ color: "red", fontWeight: "bold" }}>{errors.map(error => error.message).join(',')}</span>
 
   if (!data) return <span>Loading..</span>
 

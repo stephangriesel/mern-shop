@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const useContentful = (query) => {
     let [data, setData] = useState(null)
+    let [errors, setErrors] = useState(null)
 
     useEffect(() => {
         const loadContentful = async () => {
@@ -17,12 +18,17 @@ const useContentful = (query) => {
                     Authorization: `Bearer ${contentfulToken}`
                 },
                 body: JSON.stringify({ query }),
-            }).then((response) => response.json())
-                .then(json => setData(json.data))
+            })
+                .then((response) => response.json())
+                .then(({ data, errors }) => {
+                    if (errors) setErrors(errors)
+                    if (data) setData(data)
+                })
+                .catch((error) => setErrors([error]))
         }
         loadContentful()
     }, [query])
-    return { data }
+    return { data, errors }
 }
 
 export default useContentful
