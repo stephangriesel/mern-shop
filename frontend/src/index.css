@@ -20,6 +20,11 @@ h3 {
   margin: 0.1rem;
 }
 
+/* hero image */
+.hero-image {
+  width: 100%;
+}
+
 /* carousel */
 
 .carousel-indicators li {

@@ -2,12 +2,15 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import useContentful from '../hooks/use-contentful'
 import dotenv from 'dotenv'
+import { propTypes } from 'react-bootstrap/esm/Image';
 dotenv.config();
 
 const query = `
 query {
-  person(id: "7rO4f5TlocqD2yl5QH8QzO") {
-    name
+  homepage(id:"73NL47ptmTKaQl8VNnElhO") {
+    hero {
+      url
+    }
   }
 }
 `
@@ -20,13 +23,19 @@ const Hero = () => {
 
   if (!data) return <span>Loading..</span>
 
+  const { homepage } = data;
+  console.log("data check", homepage.hero.url)
+
   return (
 
     <span>
       <Container>
         <Row>
           <Col className='text-center py-3'>
-            {data.person.name}
+            <img className="hero-image"
+              src={homepage.hero.url}
+              alt={homepage.hero.title}
+            />
           </Col>
         </Row>
       </Container>
