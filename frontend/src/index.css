@@ -21,7 +21,22 @@ h3 {
 }
 
 /* hero image */
+.hero-container {
+  transform: rotate3d(0.1, -0.366, 0, 6deg);
+  box-shadow: 2em 4em 6em -2em rgba(0, 0, 0, 0.5),
+    1em 2em 3.5em -2.5em rgba(0, 0, 0, 0.5);
+  transition: transform 1s ease, box-shadow 0.4s ease;
+  border-radius: 0.5em;
+  padding: 0;
+}
+
+.hero-container:hover {
+  transform: rotate3d(0, 0, 0, 0deg);
+}
+
 .hero-image {
+  padding: 0;
+  margin: 0;
   width: 100%;
 }
 

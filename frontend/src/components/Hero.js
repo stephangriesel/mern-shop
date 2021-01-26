@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import useContentful from '../hooks/use-contentful'
 import dotenv from 'dotenv'
-import { propTypes } from 'react-bootstrap/esm/Image';
 dotenv.config();
 
 const query = `
@@ -31,7 +30,7 @@ const Hero = () => {
     <span>
       <Container>
         <Row>
-          <Col className='text-center py-3'>
+          <Col className='hero-container text-center'>
             <img className="hero-image"
               src={homepage.hero.url}
               alt={homepage.hero.title}
