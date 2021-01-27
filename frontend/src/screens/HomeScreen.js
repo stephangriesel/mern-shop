@@ -24,7 +24,7 @@ const HomeScreen = ({ match }) => {
     return (
         <>
             {!keyword ? <Hero /> : <Link to='/' className='btn btn-light'>Back</Link>}
-            <h1>Latest Products</h1>
+            <h1 className="mt-5">Latest Products</h1>
             {loading ? (
                 <Loader />
             ) : error ? (
