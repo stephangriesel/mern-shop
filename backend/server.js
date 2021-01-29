@@ -26,12 +26,12 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-var transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+const transport = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     auth: {
-        user: "d690709feaa20c",
-        pass: "becd9163884d24"
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD
     }
 });
 
