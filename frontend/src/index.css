@@ -110,3 +110,14 @@ a {
 .product-card:hover {
   transform: translate3d(0px, 0px, -250px);
 }
+
+.product-pdp {
+  transform: rotate3d(0.1, -0.366, 0, -20deg);
+  transition: transform 1s ease, box-shadow 0.4s ease;
+  border-radius: 0.5em;
+  padding: 0;
+}
+
+.product-pdp:hover {
+  transform: rotate3d(1, 10, 0, 10deg);
+}

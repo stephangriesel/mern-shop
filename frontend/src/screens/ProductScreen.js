@@ -29,9 +29,9 @@ const ProductScreen = ({ history, match }) => {
                     <Meta title={product.name} />
                     <Row>
                         <Col md={6}>
-                            <Image src={product.image} alt={product.name} fluid />
+                            <Image className="product-pdp" src={product.image} alt={product.name} fluid />
                         </Col>
-                        <Col mmd={3}>
+                        <Col md={3}>
                             <ListGroup variant="flash">
                                 <ListGroup.Item>
                                     <h4>{product.name}</h4>
