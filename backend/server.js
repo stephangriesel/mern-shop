@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-const transport = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
     auth: {
@@ -42,24 +42,32 @@ app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 
+app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+app.get('/api/config/contentfultoken', (req, res) => res.send(process.env.CONTENTFUL_TOKEN))
+app.get('/api/config/contentfulspace', (req, res) => res.send(process.env.CONTENTFUL_SPACE))
+app.get('/api/config/smtphost', (req, res) => res.send(process.env.SMTP_HOST))
+app.get('/api/config/smtpport', (req, res) => res.send(process.env.SMTP_PORT))
+app.get('/api/config/smtpuser', (req, res) => res.send(process.env.SMTP_USER))
+app.get('/api/config/smtppassword', (req, res) => res.send(process.env.SMTP_PASSWORD))
+app.get('/api/config/fromemail', (req, res) => res.send(process.env.FROM_EMAIL))
+console.log(process.env.SMTP_PASSWORD)
+console.log(process.env.SMTP_USER)
+console.log(process.env.SMTP_PORT)
+
 app.get("/mail", async (req, res) => {
     const mailInfo = {
-        from: '"John Doe 😎" <johndoe132@example.com>',
-        to: "testemail333@example.com",
+        from: '"Test" <test@example.com>',
+        to: "sgriesel@gmail.com",
         subject: "Test email",
         text: "Sending test email 123456",
     }
     try {
-        await transport.sendMail(mailInfo)
+        await transporter.sendMail(mailInfo)
         res.send("email sent")
     } catch (e) {
         res.status(500).send("Something broke!")
     }
 })
-
-app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
-app.get('/api/config/contentfultoken', (req, res) => res.send(process.env.CONTENTFUL_TOKEN))
-app.get('/api/config/contentfulspace', (req, res) => res.send(process.env.CONTENTFUL_SPACE))
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
