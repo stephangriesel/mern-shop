@@ -121,3 +121,17 @@ a {
 .product-pdp:hover {
   transform: rotate3d(1, 10, 0, 10deg);
 }
+
+.btn-outline-success {
+  color: #000;
+  border-color: #000;
+}
+
+.btn-outline-success:hover {
+  background-color: #738a8a;
+  border-color: #738a8a;
+}
+
+.p-2 {
+  padding: 6px 7px !important;
+}
