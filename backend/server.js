@@ -1,7 +1,7 @@
 import path from 'path'
 
 import express from 'express'
-import mailpkg from 'nodemailer'
+import sgMail from '@sendgrid/mail'
 
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
@@ -20,20 +20,9 @@ connectDB();
 
 const app = express();
 
-const nodemailer = mailpkg;
-
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
-
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD
-    }
-});
 
 app.use(express.json())
 
@@ -45,29 +34,29 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
 app.get('/api/config/contentfultoken', (req, res) => res.send(process.env.CONTENTFUL_TOKEN))
 app.get('/api/config/contentfulspace', (req, res) => res.send(process.env.CONTENTFUL_SPACE))
-app.get('/api/config/smtphost', (req, res) => res.send(process.env.SMTP_HOST))
-app.get('/api/config/smtpport', (req, res) => res.send(process.env.SMTP_PORT))
-app.get('/api/config/smtpuser', (req, res) => res.send(process.env.SMTP_USER))
-app.get('/api/config/smtppassword', (req, res) => res.send(process.env.SMTP_PASSWORD))
-app.get('/api/config/fromemail', (req, res) => res.send(process.env.FROM_EMAIL))
-console.log(process.env.SMTP_PASSWORD)
-console.log(process.env.SMTP_USER)
-console.log(process.env.SMTP_PORT)
+app.get('/api/config/sendgrid', (req, res) => res.send(process.env.SENDGRID_API_KEY))
 
-app.get("/mail", async (req, res) => {
-    const mailInfo = {
-        from: '"Test" <test@example.com>',
-        to: "sgriesel@gmail.com",
-        subject: "Test email",
-        text: "Sending test email 123456",
-    }
-    try {
-        await transporter.sendMail(mailInfo)
-        res.send("email sent")
-    } catch (e) {
-        res.status(500).send("Something broke!")
-    }
-})
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+// console.log("test sendgrid header", sgMail)
+
+const msg = {
+    to: 'demorecipient@consulitate.com', // Change to your recipient
+    from: 'demo@consulitate.com', // Change to your verified sender
+    subject: 'Sendgrid Test',
+    text: 'yes this is working in plain text',
+    html: '<strong>and in HTML</strong>',
+}
+
+// disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
+
+// sgMail
+//     .send(msg)
+//     .then(() => {
+//         console.log('Email sent')
+//     })
+//     .catch((error) => {
+//         console.error(error)
+//     })
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
