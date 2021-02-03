@@ -1,7 +1,7 @@
 import path from 'path'
 
 import express from 'express'
-import sgMail from '@sendgrid/mail'
+import sgMail from '@sendgrid/mail' // << Transactional mails
 
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
@@ -36,16 +36,18 @@ app.get('/api/config/contentfultoken', (req, res) => res.send(process.env.CONTEN
 app.get('/api/config/contentfulspace', (req, res) => res.send(process.env.CONTENTFUL_SPACE))
 app.get('/api/config/sendgrid', (req, res) => res.send(process.env.SENDGRID_API_KEY))
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+// sample transactional mails logic starts here >>>
+
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 // console.log("test sendgrid header", sgMail)
 
-const msg = {
-    to: 'demorecipient@consulitate.com', // Change to your recipient
-    from: 'demo@consulitate.com', // Change to your verified sender
-    subject: 'Sendgrid Test',
-    text: 'yes this is working in plain text',
-    html: '<strong>and in HTML</strong>',
-}
+// const msg = {
+//     to: 'demorecipient@consulitate.com', // Change to your recipient
+//     from: 'demo@consulitate.com', // Change to your verified sender
+//     subject: 'Sendgrid Test',
+//     text: 'yes this is working in plain text',
+//     html: '<strong>and in HTML</strong>',
+// }
 
 // disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
 
@@ -57,6 +59,8 @@ const msg = {
 //     .catch((error) => {
 //         console.error(error)
 //     })
+
+// << sample transactional mail logic ends here
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

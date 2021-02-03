@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import sgMail from '@sendgrid/mail'
 
 // @description     Create new order
 // @route           POST /api/orders
@@ -14,7 +15,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         shippingPrice,
         totalPrice
     } = req.body
-    console.log(req.body)
+    console.log("add order items test", req.body)
 
     if (orderItems && orderItems.length === 0) {
         res.status(400)
@@ -33,6 +34,32 @@ const addOrderItems = asyncHandler(async (req, res) => {
         })
 
         const createdOrder = await order.save()
+
+        // send: start transactional mail >>>
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        // console.log("test sendgrid header", sgMail)
+
+        const msg = {
+            to: 'demorecipient@consulitate.com', // Change to your recipient
+            from: 'demo@consulitate.com', // Change to your verified sender
+            subject: 'Product Order Sendgrid Test',
+            text: 'yes this is working in plain text',
+            html: `<strong>TEST</strong>`,
+        }
+
+        // disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
+
+        // sgMail
+        //     .send(msg)
+        //     .then(() => {
+        //         console.log('Email sent')
+        //     })
+        //     .catch((error) => {
+        //         console.error(error)
+        //     })
+
+        // <<< send:end transactional mail 
 
         res.status(201).json(createdOrder)
     }
