@@ -34,35 +34,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         })
 
         const createdOrder = await order.save()
-
-        console.log("order has been created, not paid yet...", createdOrder)
         console.log("order created and payment is...", createdOrder.isPaid)
-
-        // send: start transactional mail after order created, not paid yet >>>
-
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-        // console.log("test sendgrid header", sgMail)
-
-        const msg = {
-            to: 'demorecipient@consulitate.com', // Change to your recipient
-            from: 'demo@consulitate.com', // Change to your verified sender
-            subject: 'Product Order Sendgrid Test',
-            text: 'yes this is working in plain text',
-            html: `<strong>TEST</strong>`,
-        }
-
-        // disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
-
-        // sgMail
-        //     .send(msg)
-        //     .then(() => {
-        //         console.log('Email sent')
-        //     })
-        //     .catch((error) => {
-        //         console.error(error)
-        //     })
-
-        // <<< send:end transactional mail 
 
         res.status(201).json(createdOrder)
     }
@@ -103,9 +75,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
         }
 
         const updatedOrder = await order.save()
-
-        console.log("order has been paid", updatedOrder)
-        console.log("Order from...", updatedOrder.shippingAddress.country)
+        console.log("Order paid and from...", updatedOrder.shippingAddress.country)
+        console.log("Order paid and from...", updatedOrder)
 
         // send: start transactional mail after order has been paid >>>
 
@@ -115,9 +86,9 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
         const msg = {
             to: 'demorecipient@consulitate.com', // Change to your recipient
             from: 'demo@consulitate.com', // Change to your verified sender
-            subject: 'Product Order Sendgrid Test',
-            text: 'yes this is working in plain text',
-            html: `<strong>Thank you for ordering ${updatedOrder.orderItems}. The status of your payment is ${updatedOrder.isPaid}</strong>`,
+            subject: `Your order has been placed and ${updatedOrder.paymentResult.status}`,
+            text: `Thank you for your order ${updatedOrder.paymentResult.status} `,
+            html: `Thank you for placing your order with us <strong>${updatedOrder.paymentResult.email_address}</strong>. The status of your payment is ${updatedOrder.isPaid}.<br>We will get in contact with you shortly. If you have any questions please contact <a href="mailto:support@consulitate.com">support</a>.`,
         }
 
         // disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
