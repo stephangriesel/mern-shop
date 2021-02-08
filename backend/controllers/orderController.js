@@ -34,7 +34,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
         })
 
         const createdOrder = await order.save()
-        console.log("order created and payment is...", createdOrder.isPaid)
+        console.log("order created and payment is ", createdOrder.isPaid)
 
         res.status(201).json(createdOrder)
     }
@@ -86,9 +86,9 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
         const msg = {
             to: 'demorecipient@consulitate.com', // Change to your recipient
             from: 'demo@consulitate.com', // Change to your verified sender
-            subject: `Your order has been placed and ${updatedOrder.paymentResult.status}`,
-            text: `Thank you for your order ${updatedOrder.paymentResult.status} `,
-            html: `Thank you for placing your order with us <strong>${updatedOrder.paymentResult.email_address}</strong>. The status of your payment is ${updatedOrder.isPaid}.<br>We will get in contact with you shortly. If you have any questions please contact <a href="mailto:support@consulitate.com">support</a>.`,
+            subject: `Your order has been placed`,
+            text: `Thank you for your order. Here is your reference number:  ${updatedOrder.paymentResult.id} `,
+            html: `Thank you for placing your order with us. Your reference number is <strong>${updatedOrder.paymentResult.id}</strong>. <br>We will get in contact with you shortly. If you have any questions please contact <a href="mailto:support@consulitate.com">support</a>.`,
         }
 
         // disabled for now so free limit not reached, to activate just uncomment the msg object & help libary's send method below
