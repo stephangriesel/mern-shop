@@ -37,9 +37,6 @@ const ProductScreen = ({ history, match }) => {
                                     <h4>{product.name}</h4>
                                 </ListGroup.Item>
                                 <ListGroup.Item>
-                                    {/* <Rating value={product.rating} text={`${product.numReviews} Reviews`}></Rating> */}
-                                </ListGroup.Item>
-                                <ListGroup.Item>
                                     Price: €{product.price}
                                 </ListGroup.Item>
                                 <ListGroup.Item>

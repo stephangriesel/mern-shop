@@ -31,6 +31,7 @@ const CartScreen = ({ match, location, history }) => {
         <Row>
             <Col md={8}>
                 <h1>Shopping Cart</h1>
+                <Link className="btn btn-light my-3" to="/">Continue Shopping</Link>
                 {cartItems.length === 0 ?
                     <Message>Cart is empty. <Link to="/">Back</Link></Message> : (
                         <ListGroup variant="flush">

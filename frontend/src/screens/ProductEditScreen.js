@@ -20,6 +20,7 @@ const ProductEditScreen = ({ match, history }) => {
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
+    const [shortdesc, setShortdesc] = useState('')
     const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
@@ -46,6 +47,7 @@ const ProductEditScreen = ({ match, history }) => {
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setDescription(product.description)
+                setShortdesc(product.shortdesc)
             }
         }
 
@@ -85,7 +87,8 @@ const ProductEditScreen = ({ match, history }) => {
             brand,
             category,
             countInStock,
-            description
+            description,
+            shortdesc
         }))
     }
 
@@ -181,6 +184,17 @@ const ProductEditScreen = ({ match, history }) => {
                                 placeholder="description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="shortdesc">
+                            <Form.Label>Shortdesc</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="shortdesc"
+                                value={shortdesc}
+                                onChange={(e) => setShortdesc(e.target.value)}
                             >
                             </Form.Control>
                         </Form.Group>
