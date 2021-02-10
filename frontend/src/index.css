@@ -22,14 +22,20 @@ h3 {
 
 /* hero image */
 .hero-container {
-  transform: rotate3d(0.1, -0.366, 0, 6deg);
+  -webkit-transform: rotate3d(0.1, -0.366, 0, 6deg);
+          transform: rotate3d(0.1, -0.366, 0, 6deg);
+  -webkit-transition: -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
+  transition: -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
   transition: transform 1s ease, box-shadow 0.4s ease;
+  transition: transform 1s ease, box-shadow 0.4s ease, -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
   border-radius: 0.5em;
   padding: 0;
 }
 
 .hero-container:hover {
-  transform: rotate3d(0, 0, 0, 0deg);
+  -webkit-transform: rotate3d(0, 0, 0, 0deg);
+          transform: rotate3d(0, 0, 0, 0deg);
+  cursor: pointer;
 }
 
 .hero-image {
@@ -39,16 +45,19 @@ h3 {
 }
 
 /* carousel */
-
 .carousel-indicators li {
   background-color: #000;
 }
+
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   color: #000;
 }
+
 .carousel-caption {
   position: absolute;
   bottom: 0;
@@ -61,15 +70,17 @@ h3 {
 
 .carousel img {
   /* height: 300px;
-  padding: 30px;
-  margin: 40px; */
+    padding: 30px;
+    margin: 40px; */
   /* border-radius: 50%; */
   margin-left: auto;
   margin-right: auto;
 }
+
 .carousel a {
   margin: 0 auto;
 }
+
 @media (max-width: 900px) {
   .carousel-caption h2 {
     font-size: 2.5vw;
@@ -77,13 +88,12 @@ h3 {
 }
 
 /* Bootstrap overrides */
-
 a {
   color: #000000 !important;
 }
 
 .dropdown-item:hover {
-  background-color: rgb(228, 227, 227);
+  background-color: #e4e3e3;
 }
 
 .dropdown-item.active {
@@ -101,25 +111,32 @@ a {
 }
 
 .product-card {
-  transform: perspective(750px) translate3d(0px, 0px, -5px) rotateX(0deg)
-    scale(0.9, 0.9);
+  -webkit-transform: perspective(750px) translate3d(0px, 0px, -5px) rotateX(0deg) scale(0.9, 0.9);
+          transform: perspective(750px) translate3d(0px, 0px, -5px) rotateX(0deg) scale(0.9, 0.9);
   border-radius: 20px;
+  -webkit-transition: 0.4s ease-in-out transform;
   transition: 0.4s ease-in-out transform;
 }
 
 .product-card:hover {
-  transform: translate3d(0px, 0px, -250px);
+  -webkit-transform: translate3d(0px, 0px, -250px);
+          transform: translate3d(0px, 0px, -250px);
 }
 
 .product-pdp {
-  transform: rotate3d(0.1, -0.366, 0, -20deg);
+  -webkit-transform: rotate3d(0.1, -0.366, 0, -20deg);
+          transform: rotate3d(0.1, -0.366, 0, -20deg);
+  -webkit-transition: -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
+  transition: -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
   transition: transform 1s ease, box-shadow 0.4s ease;
+  transition: transform 1s ease, box-shadow 0.4s ease, -webkit-transform 1s ease, -webkit-box-shadow 0.4s ease;
   border-radius: 0.5em;
   padding: 0;
 }
 
 .product-pdp:hover {
-  transform: rotate3d(1, 10, 0, 10deg);
+  -webkit-transform: rotate3d(1, 10, 0, 10deg);
+          transform: rotate3d(1, 10, 0, 10deg);
 }
 
 .btn-outline-success {
@@ -135,3 +152,40 @@ a {
 .p-2 {
   padding: 6px 7px !important;
 }
+
+@media (max-width: 992px) {
+  .form-inline input {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-dark {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-dark {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .form-inline {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .form-inline button {
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+  .btn-dark {
+    margin-top: 10px;
+  }
+}
+/*# sourceMappingURL=index.css.map */

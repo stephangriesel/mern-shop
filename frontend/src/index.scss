@@ -1,0 +1,171 @@
+main {
+  min-height: 80vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+/* hero image */
+.hero-container {
+  transform: rotate3d(0.1, -0.366, 0, 6deg);
+  transition: transform 1s ease, box-shadow 0.4s ease;
+  border-radius: 0.5em;
+  padding: 0;
+  &:hover {
+    transform: rotate3d(0, 0, 0, 0deg);
+    cursor: pointer;
+  }
+}
+
+.hero-image {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* carousel */
+
+.carousel-indicators li {
+  background-color: #000;
+}
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+  color: #000;
+}
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  color: #000;
+}
+
+.carousel-caption h2 {
+  color: #000;
+}
+
+.carousel img {
+  /* height: 300px;
+    padding: 30px;
+    margin: 40px; */
+  /* border-radius: 50%; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel a {
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .carousel-caption h2 {
+    font-size: 2.5vw;
+  }
+}
+
+/* Bootstrap overrides */
+
+a {
+  color: #000000 !important;
+}
+
+.dropdown-item:hover {
+  background-color: rgb(228, 227, 227);
+}
+
+.dropdown-item.active {
+  background-color: #fff;
+}
+
+.form-control {
+  /* width: 50px; */
+  padding: 2px;
+}
+
+.btn-primary {
+  background: #000 !important;
+  border: 1px solid #979797 !important;
+}
+
+.product-card {
+  transform: perspective(750px) translate3d(0px, 0px, -5px) rotateX(0deg)
+    scale(0.9, 0.9);
+  border-radius: 20px;
+  transition: 0.4s ease-in-out transform;
+}
+
+.product-card:hover {
+  transform: translate3d(0px, 0px, -250px);
+}
+
+.product-pdp {
+  transform: rotate3d(0.1, -0.366, 0, -20deg);
+  transition: transform 1s ease, box-shadow 0.4s ease;
+  border-radius: 0.5em;
+  padding: 0;
+  &:hover {
+    transform: rotate3d(1, 10, 0, 10deg);
+  }
+}
+
+.btn-outline-success {
+  color: #000;
+  border-color: #000;
+  &:hover {
+    background-color: #738a8a;
+    border-color: #738a8a;
+  }
+}
+
+.p-2 {
+  padding: 6px 7px !important;
+}
+
+// Bootstrap overrides smaller screens
+
+@media (max-width: 992px) {
+  .form-inline {
+    input {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-dark {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-dark {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 575px) {
+  .form-inline {
+    display: flex;
+    justify-content: center;
+    button {
+      margin-left: 0 !important;
+      margin-top: 10px;
+    }
+  }
+  .btn-dark {
+    margin-top: 10px;
+  }
+}
