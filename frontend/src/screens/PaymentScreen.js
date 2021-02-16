@@ -14,7 +14,7 @@ const PaymentScreen = ({ history }) => {
         history.push('/shipping')
     }
 
-    const [paymentMethod, setPaymentMethod] = useState('Ideal')
+    const [paymentMethod, setPaymentMethod] = useState('Paypal')
 
     const dispatch = useDispatch()
 
@@ -32,15 +32,6 @@ const PaymentScreen = ({ history }) => {
                     <Form.Label as='legend'>Select Method</Form.Label>
 
                     <Col>
-                        <Form.Check
-                            type="radio"
-                            label="Ideal"
-                            id="Ideal"
-                            name="paymentMethod"
-                            value="Ideal"
-                            checked
-                            onChange={(e) => setPaymentMethod(e.target.value)}>
-                        </Form.Check>
                         <Form.Check
                             type="radio"
                             label="PayPal or Credit Card"

@@ -82,6 +82,18 @@ a {
   color: #000000 !important;
 }
 
+.card-body {
+  padding: 1rem 1.25rem 0.5rem;
+}
+
+p.card-text {
+  padding: 0 1.25rem;
+}
+
+h3.card-text {
+  padding: 0 1.25rem 0.5rem;
+}
+
 .dropdown-item:hover {
   background-color: rgb(228, 227, 227);
 }
@@ -141,6 +153,10 @@ a {
     input {
       margin-left: 0 !important;
     }
+  }
+  .navbar-nav {
+    display: flex;
+    align-items: center;
   }
 }
 
